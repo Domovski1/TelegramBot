@@ -25,8 +25,8 @@ namespace TelegramBot
             var msg = e.Message;
             if (msg.Text != null)
             {
-                Console.WriteLine($"Пришло сообщение: {msg.Text}");
-
+                Console.WriteLine($" {msg.From}: {msg.Text}");
+                
                 switch (msg.Text)
                 {
                     case "Стикер":
@@ -52,7 +52,7 @@ namespace TelegramBot
 
 
                 // Первый аргумент указывает, куда отправлять ответ, а второй аргумент - что отвечать.
-                await client.SendTextMessageAsync(msg.Chat.Id, "Ваше сообщение принято", replyMarkup: GetButtons());
+                //await client.SendTextMessageAsync(msg.Chat.Id, "Ваше сообщение принято", replyMarkup: GetButtons());
             }
         }
 
@@ -70,3 +70,6 @@ namespace TelegramBot
         }
     }
 }
+
+
+// Добавить сохранение отправленных сообщений в ткст
