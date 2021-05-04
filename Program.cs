@@ -37,6 +37,14 @@ namespace TelegramBot
                             replyMarkup: GetButtons());
                         break;
 
+                    case "Картинка":
+                        var pic = await client.SendPhotoAsync(
+                            chatId: msg.Chat.Id,
+                            photo: "https://sun9-57.userapi.com/impg/4b7GLehH0kM2PkUP53sxOvf7d09pe49DedXAhQ/nOJWRVm7z_Q.jpg?size=1953x1255&quality=96&sign=14aee579f9e7b078f24e9301c69b75df&type=album",
+                            replyToMessageId: msg.MessageId,
+                            replyMarkup: GetButtons());
+                        break;
+
                     default:
                         await client.SendTextMessageAsync(msg.Chat.Id, "Ваше сообщение принято");
                         break;
@@ -54,8 +62,8 @@ namespace TelegramBot
             {
                 Keyboard = new List<List<KeyboardButton>>
                 {
-                    new List<KeyboardButton> { new KeyboardButton { Text = "TestButton" }, new KeyboardButton { Text = "Вторая кнопка" } },
-                    new List<KeyboardButton> { new KeyboardButton { Text = "Стикер" }, new KeyboardButton { Text = "double btn" } },
+                    //new List<KeyboardButton> { new KeyboardButton { Text = "TestButton" }, new KeyboardButton { Text = "Вторая кнопка" } },
+                    new List<KeyboardButton> { new KeyboardButton { Text = "Стикер" }, new KeyboardButton { Text = "Картинка" } },
 
                 }
             };
