@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -26,7 +27,10 @@ namespace TelegramBot
             if (msg.Text != null)
             {
                 Console.WriteLine($" {msg.From}: {msg.Text}");
-                
+                StreamWriter writer = new StreamWriter(@"C:\Users\Domovski\Desktop\TbotLog's.txt");
+                writer.WriteLine($"{msg.From}: {msg.Text}");
+                writer.Close();
+
                 switch (msg.Text)
                 {
                     case "Стикер":
@@ -45,8 +49,30 @@ namespace TelegramBot
                             replyMarkup: GetButtons());
                         break;
 
+                    case "Видео":
+
+                        var vid = await client.SendVideoAsync(
+                            chatId: msg.Chat.Id,
+                            video: File.OpenRead(Environment.CurrentDirectory + @"/" + "vid.MP4"),
+                            thumb: "https://sun9-57.userapi.com/impg/4b7GLehH0kM2PkUP53sxOvf7d09pe49DedXAhQ/nOJWRVm7z_Q.jpg?size=1953x1255&quality=96&sign=14aee579f9e7b078f24e9301c69b75df&type=album",
+                            replyToMessageId: msg.MessageId,
+                            supportsStreaming: true) ;
+                        break;
+
+                    case "Видео-ответ":
+                        using (var stream = File.OpenRead(@"G:\Media\SomeVids\BXAJ0401.MP4"))
+                        {
+                            msg = await client.SendVideoNoteAsync(
+                                chatId: msg.Chat.Id,
+                                videoNote: stream,
+                                duration: 30,
+                                length: 360
+                                );
+                        }
+                        break;
+
                     default:
-                        await client.SendTextMessageAsync(msg.Chat.Id, "Ваше сообщение принято");
+                        await client.SendTextMessageAsync(msg.Chat.Id, "Халяс пезер, остановись");
                         break;
                 }
 
@@ -62,8 +88,8 @@ namespace TelegramBot
             {
                 Keyboard = new List<List<KeyboardButton>>
                 {
-                    //new List<KeyboardButton> { new KeyboardButton { Text = "TestButton" }, new KeyboardButton { Text = "Вторая кнопка" } },
-                    new List<KeyboardButton> { new KeyboardButton { Text = "Стикер" }, new KeyboardButton { Text = "Картинка" } },
+                    new List<KeyboardButton> { new KeyboardButton { Text = "Видео" }, new KeyboardButton { Text = "Видео-ответ" }},
+                    new List<KeyboardButton> { new KeyboardButton { Text = "Стикер" }, new KeyboardButton { Text = "Картинка" } }
 
                 }
             };
