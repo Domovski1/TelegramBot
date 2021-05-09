@@ -27,8 +27,8 @@ namespace TelegramBot
             if (msg.Text != null)
             {
                 Console.WriteLine($" {msg.From}: {msg.Text}");
-                StreamWriter writer = new StreamWriter(@"C:\Users\Domovski\Desktop\TbotLog's.txt");
-                writer.WriteLine($"{msg.From}: {msg.Text}");
+                StreamWriter writer = new StreamWriter(@"C:\Users\Domovski\Desktop\Logos.txt");
+                writer.WriteLine($"{msg.From}: {msg.Text} ({DateTime.Now})" );
                 writer.Close();
 
                 switch (msg.Text)
@@ -66,12 +66,12 @@ namespace TelegramBot
                                 chatId: msg.Chat.Id,
                                 videoNote: stream,
                                 duration: 30,
-                                length: 360
+                                length: 180
                                 );
                         }
                         break;
 
-                    default:
+                    default:    
                         await client.SendTextMessageAsync(msg.Chat.Id, "Халяс пезер, остановись");
                         break;
                 }
