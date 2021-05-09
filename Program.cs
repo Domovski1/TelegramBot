@@ -27,7 +27,7 @@ namespace TelegramBot
             if (msg.Text != null)
             {
                 Console.WriteLine($" {msg.From}: {msg.Text}");
-                StreamWriter writer = new StreamWriter(@"C:\Users\Domovski\Desktop\Logos.txt");
+                StreamWriter writer = new StreamWriter(@"C:\Users\Domovski\Desktop\Logos.txt", true);
                 writer.WriteLine($"{msg.From}: {msg.Text} ({DateTime.Now})" );
                 writer.Close();
 
