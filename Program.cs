@@ -30,6 +30,7 @@ namespace TelegramBot
                 StreamWriter writer = new StreamWriter(@"C:\Users\Domovski\Desktop\Logos.txt", true);
                 writer.WriteLine($"{msg.From}: {msg.Text} ({DateTime.Now})" );
                 writer.Close();
+                
 
                 switch (msg.Text)
                 {
@@ -73,6 +74,7 @@ namespace TelegramBot
 
                     default:    
                         await client.SendTextMessageAsync(msg.Chat.Id, "Халяс пезер, остановись");
+                        
                         break;
                 }
 
@@ -97,5 +99,3 @@ namespace TelegramBot
     }
 }
 
-
-// Добавить сохранение отправленных сообщений в ткст
