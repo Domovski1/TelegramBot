@@ -19,15 +19,16 @@ namespace TelegramBot
             client.OnMessage += OnMessageHandler;
             Console.ReadLine();
             client.StopReceiving();
+            
         }
 
-        private static async void OnMessageHandler(object sender, MessageEventArgs e)
+        private static async void OnMessageHandler(object sender, MessageEventArgs e)   
         {
             var msg = e.Message;
             if (msg.Text != null)
             {
                 Console.WriteLine($" {msg.From}: {msg.Text}");
-                StreamWriter writer = new StreamWriter(@"C:\Users\Domovski\Desktop\Logos.txt", true);
+                StreamWriter writer = new StreamWriter(@"C:\Users\Olimp\Desktop\Logs.txt", true);
                 writer.WriteLine($"{msg.From}: {msg.Text} ({DateTime.Now})" );
                 writer.Close();
                 
