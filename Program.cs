@@ -10,6 +10,7 @@ namespace TelegramBot
     class Program
     {
         private static string token { get; set; } = "1777573276:AAE7ePm8ZTn4rSVjq9HkNNI27eNf3eFPyCo";
+        private static string path = Environment.CurrentDirectory + @"/" + "TelegramBot.txt";
         private static TelegramBotClient client;
         static void Main(string[] args)
         {
@@ -28,7 +29,7 @@ namespace TelegramBot
             if (msg.Text != null)
             {
                 Console.WriteLine($" {msg.From}: {msg.Text}");
-                StreamWriter writer = new StreamWriter(@"C:\Users\Olimp\Desktop\Logs.txt", true);
+                StreamWriter writer = new StreamWriter(path, true);
                 writer.WriteLine($"{msg.From}: {msg.Text} ({DateTime.Now})" );
                 writer.Close();
                 
