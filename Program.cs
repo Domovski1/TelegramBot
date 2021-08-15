@@ -4,6 +4,7 @@ using System.IO;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.ReplyMarkups;
+using TelegramBot.Classes;
 
 namespace TelegramBot
 {
@@ -75,7 +76,7 @@ namespace TelegramBot
                         break;
 
                     default:    
-                        await client.SendTextMessageAsync(msg.Chat.Id, "Халяс пезер, остановись");
+                        await client.SendTextMessageAsync(msg.Chat.Id, SomeFeatures.PasswordGenerator());
                         
                         break;
                 }
@@ -85,6 +86,7 @@ namespace TelegramBot
                 //await client.SendTextMessageAsync(msg.Chat.Id, "Ваше сообщение принято", replyMarkup: GetButtons());
             }
         }
+
 
         private static IReplyMarkup GetButtons()
         {
