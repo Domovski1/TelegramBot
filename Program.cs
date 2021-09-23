@@ -76,7 +76,7 @@ namespace TelegramBot
                     try
                     {
                         VideoFromYoutubeToAudio.SaveVideoToDisk(MessageFromUser.Text);
-                        Console.WriteLine($"[INFO] Video downloaded \nlink: {MessageFromUser.Text}");
+                        //Console.WriteLine($"[INFO] Video downloaded \nlink: {MessageFromUser.Text}");
 
                         var vid = await client.SendVideoAsync(
                                 chatId: MessageFromUser.Chat.Id,

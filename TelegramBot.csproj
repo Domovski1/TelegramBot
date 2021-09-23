@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ApplicationIcon>telegram_logo_icon_144811.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
