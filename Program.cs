@@ -55,9 +55,10 @@ namespace TelegramBot
                 writer.Close();
             } else
             {
-                Console.WriteLine($"{MessageFromUser.From}: {MessageFromUser.Text}");
+                // Вывод в консоль инфы о входящих сообщениях
+                Console.WriteLine($"от: {MessageFromUser.From}: \n   {MessageFromUser.Text} \nВремя: {DateTime.Now} \n\n\n");
                 StreamWriter writer = new StreamWriter(log, true);
-                writer.WriteLine($"{ MessageFromUser.From}: {MessageFromUser.Text} ({DateTime.Now}");
+                writer.WriteLine($"{ MessageFromUser.From}: {MessageFromUser.Text} {DateTime.Now}");
                 writer.Close();
             }
 
@@ -87,8 +88,16 @@ namespace TelegramBot
                     }
                     catch (Exception ex)
                     {
-                        await client.SendTextMessageAsync(MessageFromUser.Chat.Id, "Упс, что-то пошло не так.. \nВозможно вы ввели неверную команду \nМожно вызвать информацию через команду \\info");
-                        Console.WriteLine(ex.Message);
+                        if (MessageFromUser.From.Id == 558037421 || MessageFromUser.From.Id == 1655874208)
+                        {
+                            await client.SendTextMessageAsync(MessageFromUser.Chat.Id, $"Упс, что-то пошло не так.. \n[INFO] {ex.Message}");
+
+                        } else
+                        {
+                            await client.SendTextMessageAsync(MessageFromUser.Chat.Id, "Упс, что-то пошло не так.. \nВозможно вы ввели неверную команду \nМожно вызвать информацию через команду \\info");
+                            Console.WriteLine("ERROR: " + ex.Message);
+
+                        }
                     }
                 }
             }
